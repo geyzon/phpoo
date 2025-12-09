@@ -11,6 +11,7 @@
 			"App\\": "src/",
 			"App\\Classes\\": "src/Classes/",
 			"App\\Controllers\\": "src/Controllers/",
+			"App\\Controllers\\Erro\\": "src/Controllers/Erro/",
 			"App\\Functions\\": "src/Functions/",
 			"App\\Interfaces\\": "src/Interfaces/",
 			"App\\Models\\": "src/Models/",
