@@ -10,7 +10,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 	define('DEFAULT_ACTION', 'index');
 	
 	require_once __DIR__ . '/../vendor/autoload.php';
-	require_once __DIR__ . '/../src/functions/functions_twig.php';
+	require_once __DIR__ . '/../src/Functions/functions_twig.php';
 	require_once __DIR__ . '/bootstrap/bootstrap.php';
 }
 ?>

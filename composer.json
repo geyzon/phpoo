@@ -9,13 +9,13 @@
 	"autoload": {
 		"psr-4": {
 			"App\\": "src/",
-			"App\\Classes\\": "src/classes/",
-			"App\\Controllers\\": "src/controllers/",
-			"App\\Functions\\": "src/functions/",
-			"App\\Interfaces\\": "src/interfaces/",
-			"App\\Models\\": "src/models/",
-			"App\\Repositories\\": "src/repositories/",
-			"App\\Views\\": "src/views/"
+			"App\\Classes\\": "src/Classes/",
+			"App\\Controllers\\": "src/Controllers/",
+			"App\\Functions\\": "src/Functions/",
+			"App\\Interfaces\\": "src/Interfaces/",
+			"App\\Models\\": "src/Models/",
+			"App\\Repositories\\": "src/Repositories/",
+			"App\\Views\\": "src/Views/"
 		}
 	},
 	"authors": [
