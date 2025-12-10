@@ -1,2 +1,2 @@
 <?php
-echo "<p></p>HomeController.php encontrado com sucesso!<br>";
+echo "<p></p>HomeController.php dentro do Site encontrado com sucesso!<br>";

@@ -27,30 +27,56 @@ class Controller
 	{
 		$uriArray = $this->uri->getUriArray();
 		
-		if ($this->uri->emptyUri()) {
+		if ($this->uri->emptyUri()) 
+		{
 			$controllerName = DEFAULT_CONTROLLER;
 			$actionName = DEFAULT_ACTION;
-		} else {
+		} else 
+		{
 			$controllerName = $uriArray[1] ?? DEFAULT_CONTROLLER;
 			$actionName = $uriArray[2] ?? DEFAULT_ACTION;
 		}
 		
 		$controllerClass = self::NAMESPACE_CONTROLLERS;
 		
-		if (in_array(ucfirst($controllerName), self::FOLDERS_CONTROLLERS)) {
-			$controllerClass .= ucfirst($actionName) . 'Controller';
-		} else {
-			$controllerClass .= 'Site\\' . ucfirst($controllerName) . 'Controller';
+		if (in_array(ucfirst($controllerName), self::FOLDERS_CONTROLLERS)) 
+		{
+			$controllerClass .= ucfirst($controllerName) . '\\' . ucfirst($actionName) . 'Controller';
+			echo "<br>" . $controllerClass . "<br>";
+			echo "<br>Entrou no primeiro<br>";
 		}
+		else
+		{
+			$controllerClass .= ucfirst($controllerName) . 'Controller';
+			echo "<br>" . $controllerClass . "<br>";
+			echo "<br>Entrou no segundo<br>";
+		}		
+			
 		
-		if (class_exists($controllerClass)) {
+		
+		if (class_exists($controllerClass)) 
+		{
 			$this->controller = new $controllerClass();
-		} else {
+		} else 
+		{
 			$errorClass = self::ERROR_CONTROLLER;
 			$this->controller = new $errorClass();
 		}
 		
 		return $this->controller;
+	}
+	
+	public function controller()
+	{
+		$controller = $this->getController();
+		
+		foreach(self::FOLDERS_CONTROLLERS as $folderController)
+		{
+			if (class_exists(self::NAMESPACE_CONTROLLERS.$folderController.'\\'.$controller))
+			{
+				return self::NAMESPACE_CONTROLLERS.$folderController.'\\'.$controller;
+			}
+		}
 	}
 
 }

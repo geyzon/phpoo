@@ -6,7 +6,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 } else {
     session_start();
 	
-	define('DEFAULT_CONTROLLER', 'home');
+	define('DEFAULT_CONTROLLER', 'Home');
 	define('DEFAULT_ACTION', 'index');
 	
 	require_once __DIR__ . '/../vendor/autoload.php';
