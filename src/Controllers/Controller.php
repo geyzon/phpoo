@@ -16,6 +16,8 @@ class Controller
 	
 	private $controller;
 	
+	private $controllerClass;
+	
 	private $uri;
 
 	public function __construct()
@@ -37,26 +39,26 @@ class Controller
 			$actionName = $uriArray[2] ?? DEFAULT_ACTION;
 		}
 		
-		$controllerClass = self::NAMESPACE_CONTROLLERS;
+		$this->controllerClass = self::NAMESPACE_CONTROLLERS;
 		
 		if (in_array(ucfirst($controllerName), self::FOLDERS_CONTROLLERS)) 
 		{
-			$controllerClass .= ucfirst($controllerName) . '\\' . ucfirst($actionName) . 'Controller';
-			echo "<br>" . $controllerClass . "<br>";
+			// Se tem Admin ou Site na URI
+			$this->controllerClass .= ucfirst($controllerName) . '\\' . ucfirst($actionName) . 'Controller';
+			echo "<br>" . $this->controllerClass . "<br>";
 			echo "<br>Entrou no primeiro<br>";
 		}
 		else
 		{
-			$controllerClass .= ucfirst($controllerName) . 'Controller';
-			echo "<br>" . $controllerClass . "<br>";
+			// Se é a raiz do projeto
+			$this->controllerClass .= ucfirst($controllerName) . 'Controller';
+			echo "<br>" . $this->controllerClass . "<br>";
 			echo "<br>Entrou no segundo<br>";
 		}		
-			
 		
-		
-		if (class_exists($controllerClass)) 
+		if (class_exists($this->controllerClass)) 
 		{
-			$this->controller = new $controllerClass();
+			$this->controller = new $this->controllerClass();
 		} else 
 		{
 			$errorClass = self::ERROR_CONTROLLER;
@@ -68,15 +70,17 @@ class Controller
 	
 	public function controller()
 	{
-		$controller = $this->getController();
+		$this->controller = $this->getController();
 		
 		foreach(self::FOLDERS_CONTROLLERS as $folderController)
 		{
-			if (class_exists(self::NAMESPACE_CONTROLLERS.$folderController.'\\'.$controller))
+			if (class_exists($this->controllerClass))
 			{
-				return self::NAMESPACE_CONTROLLERS.$folderController.'\\'.$controller;
+				echo "<br>" . self::NAMESPACE_CONTROLLERS. '\\' . $folderController . "<br>";
+				//echo $controller;
 			}
 		}
+		return $this->controller;
 	}
 
 }
