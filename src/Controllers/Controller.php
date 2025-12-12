@@ -44,7 +44,7 @@ class Controller
 		if (in_array(ucfirst($controllerName), self::FOLDERS_CONTROLLERS)) 
 		{
 			// Se tem Admin ou Site na URI
-			$this->controllerClass .= ucfirst($controllerName) . '\\' . ucfirst($actionName) . 'Controller';
+			$this->controllerClass .= ucfirst($controllerName) . "\\". ucfirst($actionName) . 'Controller';
 			echo "<br>" . $this->controllerClass . "<br>";
 			echo "<br>Entrou no primeiro<br>";
 		}
@@ -70,17 +70,29 @@ class Controller
 	
 	public function controller()
 	{
-		$this->controller = $this->getController();
+		$uriArray = $this->uri->getUriArray();
 		
+		if ($this->uri->emptyUri()) 
+		{
+			$controllerName = DEFAULT_CONTROLLER;
+			$actionName = DEFAULT_ACTION;
+		} else 
+		{
+			$controllerName = $uriArray[1] ?? DEFAULT_CONTROLLER;
+			$actionName = $uriArray[2] ?? DEFAULT_ACTION;
+		}
+		
+		if (class_exists($this->controllerClass))
+		{
+			echo "<br>" . self::NAMESPACE_CONTROLLERS. $folderController . "<br>";
+			echo $controller;
+			echo $controllerName;
+		}
 		foreach(self::FOLDERS_CONTROLLERS as $folderController)
 		{
-			if (class_exists($this->controllerClass))
-			{
-				echo "<br>" . self::NAMESPACE_CONTROLLERS. '\\' . $folderController . "<br>";
-				//echo $controller;
-			}
+			echo "<br>" . self::NAMESPACE_CONTROLLERS. $folderController . "<br>";
 		}
-		return $this->controller;
+		return $this->getController();
 	}
 
 }
