@@ -72,22 +72,6 @@ class Controller
 	{
 		$uriArray = $this->uri->getUriArray();
 		
-		if ($this->uri->emptyUri()) 
-		{
-			$controllerName = DEFAULT_CONTROLLER;
-			$actionName = DEFAULT_ACTION;
-		} else 
-		{
-			$controllerName = $uriArray[1] ?? DEFAULT_CONTROLLER;
-			$actionName = $uriArray[2] ?? DEFAULT_ACTION;
-		}
-		
-		if (class_exists($this->controllerClass))
-		{
-			echo "<br>" . self::NAMESPACE_CONTROLLERS. $folderController . "<br>";
-			echo $controller;
-			echo $controllerName;
-		}
 		foreach(self::FOLDERS_CONTROLLERS as $folderController)
 		{
 			echo "<br>" . self::NAMESPACE_CONTROLLERS. $folderController . "<br>";
